@@ -33,11 +33,17 @@ public class SmartTV : Device
         {
             return false;
         }
-        else
+
+        if (_launchedApps.Contains(app))
         {
-            _launchedApps.Add(app);
+            var element = _launchedApps[_launchedApps.IndexOf(app)];
+            _launchedApps.RemoveAt(_launchedApps.IndexOf(app));
+            _launchedApps.Add(element);
             return true;
         }
+
+        _launchedApps.Add(app);
+        return true;
     }
 
     public bool InstallApplication(string app)
